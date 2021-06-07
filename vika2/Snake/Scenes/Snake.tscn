@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Sprites/Snake.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Snake.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/ResetText.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.58917, 7.64408 )
+
+[node name="Snake" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 8.0677, 7.99754 )
+shape = SubResource( 1 )
+
+[node name="ResetText" parent="." instance=ExtResource( 3 )]
+
+[connection signal="body_entered" from="." to="." method="_on_snake_head_collision"]
