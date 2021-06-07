@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Score.tscn" type="PackedScene" id=3]
+
+[sub_resource type="SegmentShape2D" id=1]
+b = Vector2( 1029.01, 0.457962 )
+
+[sub_resource type="SegmentShape2D" id=2]
+a = Vector2( 1.1685, 602.083 )
+b = Vector2( 1023.45, 602.083 )
+
+[node name="World" type="Node2D"]
+
+[node name="Player1" parent="." instance=ExtResource( 1 )]
+position = Vector2( 32, 299 )
+
+[node name="Player2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 992, 299 )
+is_player_one = false
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="TopWall" type="CollisionShape2D" parent="Walls"]
+shape = SubResource( 1 )
+
+[node name="BottomWall" type="CollisionShape2D" parent="Walls"]
+shape = SubResource( 2 )
+
+[node name="Ball" parent="." instance=ExtResource( 2 )]
+position = Vector2( 396.899, 262.397 )
+player_1_score_path = NodePath("../Player1Score")
+player_2_score_path = NodePath("../Player2Score")
+
+[node name="Player1Score" parent="." instance=ExtResource( 3 )]
+position = Vector2( 450, 20 )
+
+[node name="Player2Score" parent="." instance=ExtResource( 3 )]
+position = Vector2( 574, 20 )
